@@ -61,8 +61,8 @@ while True:
         loop_count = 0
     
     # Update the displays
-    line1 = "µSv/ hour: {:.2f}   ".format(len(counts)*usvh_ratio)
-    line2 = "Counts/ min: {}    ".format(int(len(counts)))
+    line1 = "uSv/h: {:.2f}   ".format(len(counts)*usvh_ratio)
+    line2 = "CPM: {}    ".format(int(len(counts)))
     line3 = "   contamination    "
     line4 = "      zone.net      "
 
