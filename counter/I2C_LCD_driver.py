@@ -16,10 +16,10 @@ Made available under GNU GENERAL PUBLIC LICENSE
 """
 
 # i2c bus (0 -- original Pi, 1 -- Rev 2 Pi)
-I2CBUS = I2C_BUS
+I2CBUS = 1
 
 # LCD Address
-ADDRESS = 1xI2C_ADDRESS
+ADDRESS = 0x27
 
 import smbus
 from time import sleep
