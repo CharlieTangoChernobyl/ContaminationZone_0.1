@@ -2,7 +2,7 @@
 # see more about dockerfile templates here: https://www.balena.io/docs/learn/develop/dockerfile/
 FROM balenalib/%%BALENA_MACHINE_NAME%%-python:3-stretch-build
 
-RUN install_packages jq curl python3-urwid python3-smbus
+RUN install_packages jq curl python3-urwid python3-smbus python-pushovers
 RUN wget https://github.com/PiSupply/PiJuice/raw/master/Software/Install/pijuice-base_1.6_all.deb && \
   dpkg -i pijuice-base_1.6_all.deb
 

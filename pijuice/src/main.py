@@ -4,6 +4,10 @@ import sys, getopt, os
 from pijuice import PiJuice
 from balena import Balena
 from twilio.rest import Client
+from pushover import Client
+
+client = Client("ur5r7qtk2kcmgg8tpf5tx416idchfd", api_token="a54ix2xeoeozgvaichhk7q8dp8mvhn")
+client.send_message("Hello!", title="Hello")
 
 # Start the SDK
 balena = Balena()
