@@ -71,4 +71,4 @@ while True:
     lcd.lcd_display_string(line3, 3, 0)
     lcd.lcd_display_string(line4, 4, 0)
     
-    time.sleep(5)
+    time.sleep(2.2)
