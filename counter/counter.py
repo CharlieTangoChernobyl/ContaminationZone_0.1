@@ -7,41 +7,20 @@ from collections import deque
 from influxdb import InfluxDBClient
 import I2C_LCD_driver
 
+GPIO.setmode(GPIO.BOARD)
+
 counts = deque()
-hundredcount = 0
 usvh_ratio = 0.00812037037037 # This is for the J305 tube
 
 lcd = I2C_LCD_driver.lcd()
 screen_columns = 20
 screen_rows = 4
 
-lcd.lcd_display_string("Hello Cunt", 1, 0)
-lcd.lcd_display_string("Line 2", 2, 0)
-lcd.lcd_display_string("Line 3", 3, 0)
-lcd.lcd_display_string("Line 4", 4, 0)
-
 # This method fires on edge detection (the pulse from the counter board)
 def countme(channel):
-    global counts, hundredcount
+    global counts
     timestamp = datetime.datetime.now()
     counts.append(timestamp)
-
-    # Every time we hit 100 counts, run count100 and reset
-    hundredcount = hundredcount + 1
-    if hundredcount >= 100:
-        hundredcount = 0
-        count100()
-
-# This method runs the servo to increment the mechanical counter
-def count100():
-    GPIO.setup(12, GPIO.OUT)
-    pwm = GPIO.PWM(12, 50)
-
-    pwm.start(4)
-    time.sleep(1)
-    pwm.start(9.5)
-    time.sleep(1)
-    pwm.stop()
 
 
 # Set the input with falling edge detection for geiger counter pulses
@@ -81,7 +60,15 @@ while True:
         influx_client.write_points(measurements)
         loop_count = 0
     
-    # Update the displays with a zero-padded string
+    # Update the displays
+    line1 = "uSv/h: {:.2f}   ".format(len(counts)*usvh_ratio)
+    line2 = "CPM: {}    ".format(int(len(counts)))
+    line3 = "   contamination    "
+    line4 = "      zone.net      "
 
+    lcd.lcd_display_string(line1, 1, 0)
+    lcd.lcd_display_string(line2, 2, 0)
+    lcd.lcd_display_string(line3, 3, 0)
+    lcd.lcd_display_string(line4, 4, 0)
     
     time.sleep(1)
