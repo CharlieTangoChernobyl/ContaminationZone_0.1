@@ -22,7 +22,6 @@ COPY . ./
 
 # Enable udevd so that plugged dynamic hardware devices show up in our container.
 ENV UDEV=1
-ENV BALENA_API_KEY=sdsdss
 
 # main.py will run when container starts up on the device
 CMD ["python3", "src/main.py"]
