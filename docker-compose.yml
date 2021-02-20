@@ -29,3 +29,8 @@ services:
     privileged: true
     labels:
       io.balena.features.dbus: '1'
+  PiJuice:
+    build: ./pijuice
+    privileged: true
+    labels:
+      io.balena.features.dbus: '1'
