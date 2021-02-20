@@ -16,6 +16,8 @@ lcd = I2C_LCD_driver.lcd()
 screen_columns = 20
 screen_rows = 4
 
+time.sleep(1)
+
 # This method fires on edge detection (the pulse from the counter board)
 def countme(channel):
     global counts
@@ -71,4 +73,4 @@ while True:
     lcd.lcd_display_string(line3, 3, 0)
     lcd.lcd_display_string(line4, 4, 0)
     
-    time.sleep(2.2)
+    time.sleep(2)
