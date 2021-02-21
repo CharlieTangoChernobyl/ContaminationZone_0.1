@@ -6,6 +6,7 @@ import RPi.GPIO as GPIO
 import sys
 import getopt
 import os
+import smbus
 from collections import deque
 from influxdb import InfluxDBClient
 from pijuice import PiJuice
@@ -40,7 +41,7 @@ loop_count = 0
 # Wait for device I2C device to start
 while not os.path.exists('/dev/i2c-1'):
     print ("Waiting to identify PiJuice")
-    time.sleep(0.1)
+    time.sleep(10)
 
 # Initiate PiJuice
 pijuice = PiJuice(1,0x14)
@@ -82,4 +83,5 @@ while True:
     lcd.lcd_display_string(line2, 2, 0)
     lcd.lcd_display_string(line3, 3, 0)
     lcd.lcd_display_string(line4, 4, 0)
+
     time.sleep(1)
