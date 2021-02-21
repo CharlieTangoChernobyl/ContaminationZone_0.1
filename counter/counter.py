@@ -31,13 +31,11 @@ GPIO.add_event_detect(16, GPIO.FALLING, callback=countme)
 influx_client = InfluxDBClient('influxdb', 8086, database='balena-sense')
 influx_client.create_database('balena-sense')
 
-#some parts do not need to update every second
-line1 = "uSv/h: "
-line2 = "CPM: "
-line3 = " System starting..."
-lcd.lcd_display_string(line1, 1, 0)
-lcd.lcd_display_string(line2, 2, 0)
+#Line 3 and 4 do not need to update every second
+line3 = "   contamination    "
+line4 = "      zone.net      "
 lcd.lcd_display_string(line3, 3, 0)
+lcd.lcd_display_string(line4, 4, 0)
 
 loop_count = 0
 
@@ -69,10 +67,10 @@ while True:
         loop_count = 0
     
     # Update the displays
-    line1a = "{:.2f}   ".format(len(counts)*usvh_ratio)
-    line2a = "{}    ".format(int(len(counts)))
+    line1 = "uSv/h: {:.2f}   ".format(len(counts)*usvh_ratio)
+    line2 = "CPM: {}    ".format(int(len(counts)))
 
-    lcd.lcd_display_string(line1a, 4, 8)
-    lcd.lcd_display_string(line2a, 2, 6)
+    lcd.lcd_display_string(line1, 1, 0)
+    lcd.lcd_display_string(line2, 2, 0)
     
     time.sleep(1)
