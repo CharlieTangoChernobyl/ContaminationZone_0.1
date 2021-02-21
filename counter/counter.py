@@ -5,9 +5,18 @@ import datetime
 import RPi.GPIO as GPIO
 from collections import deque
 from influxdb import InfluxDBClient
+from pijuice import PiJuice
 import I2C_LCD_driver
 
 GPIO.setmode(GPIO.BOARD)
+
+# Wait for device I2C device to start
+while not os.path.exists('/dev/i2c-1'):
+    print ("Waiting to identify PiJuice")
+    time.sleep(0.1)
+
+# Initiate PiJuice
+pijuice = PiJuice(1,0x14)
 
 counts = deque()
 usvh_ratio = 0.00812037037037 # This is for the J305 tube
