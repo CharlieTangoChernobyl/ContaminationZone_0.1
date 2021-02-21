@@ -13,14 +13,6 @@ import I2C_LCD_driver
 
 GPIO.setmode(GPIO.BOARD)
 
-# Wait for device I2C device to start
-while not os.path.exists('/dev/i2c-1'):
-    print ("Waiting to identify PiJuice")
-    time.sleep(0.1)
-
-# Initiate PiJuice
-pijuice = PiJuice(1,0x14)
-
 counts = deque()
 usvh_ratio = 0.00812037037037 # This is for the J305 tube
 
@@ -44,6 +36,15 @@ influx_client = InfluxDBClient('influxdb', 8086, database='balena-sense')
 influx_client.create_database('balena-sense')
 
 loop_count = 0
+
+# Wait for device I2C device to start
+while not os.path.exists('/dev/i2c-1'):
+    print ("Waiting to identify PiJuice")
+    time.sleep(0.1)
+
+# Initiate PiJuice
+pijuice = PiJuice(1,0x14)
+
 
 # In order to calculate CPM we need to store a rolling count of events in the last 60 seconds
 # This loop runs every second to update the Nixie display and removes elements from the queue
