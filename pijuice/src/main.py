@@ -1,6 +1,8 @@
 from time import sleep
 import datetime
-import sys, getopt, os
+import sys
+import getopt
+import os
 from pijuice import PiJuice
 from balena import Balena
 from twilio.rest import Client
@@ -8,11 +10,6 @@ from twilio.rest import Client
 # Start the SDK
 balena = Balena()
 balena.auth.login_with_token(os.environ['BALENA_API_KEY'])
-
-# Wait for device I2C device to start
-while not os.path.exists('/dev/i2c-1'):
-    print ("Waiting to identify PiJuice")
-    time.sleep(0.1)
 
 # Initiate PiJuice
 pijuice = PiJuice(1,0x14)
