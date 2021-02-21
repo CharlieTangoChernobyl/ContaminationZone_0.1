@@ -3,6 +3,9 @@
 import time
 import datetime
 import RPi.GPIO as GPIO
+import sys
+import getopt
+import os
 from collections import deque
 from influxdb import InfluxDBClient
 from pijuice import PiJuice
