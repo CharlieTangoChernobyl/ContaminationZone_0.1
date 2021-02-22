@@ -1,4 +1,4 @@
-FROM balenalib/raspberrypi3-debian-python:3.7-buster-build
+FROM balenalib/%%BALENA_MACHINE_NAME%%-python:3-stretch-build
 
 WORKDIR /usr/app/src
 
