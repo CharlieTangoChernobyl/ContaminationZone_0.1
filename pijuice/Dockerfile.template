@@ -1,12 +1,16 @@
-WORKDIR /usr/app/src
+# base-image for python on any machine using a template variable,
+# see more about dockerfile templates here: https://www.balena.io/docs/learn/develop/dockerfile/
+FROM balenalib/%%BALENA_MACHINE_NAME%%-python:3-stretch-build
 
 RUN install_packages jq curl python3-urwid python3-smbus 
 RUN pip install spidev RPi.GPIO influxdb smbus
-
 RUN wget https://github.com/PiSupply/PiJuice/raw/master/Software/Install/pijuice-base_1.6_all.deb && \
   dpkg -i pijuice-base_1.6_all.deb
 
 RUN pip3 install smbus
+
+# Set our working directory
+WORKDIR /usr/src/app
 
 # Copy requirements.txt first for better cache on later pushes
 COPY requirements.txt requirements.txt
@@ -20,4 +24,6 @@ COPY . ./
 # Enable udevd so that plugged dynamic hardware devices show up in our container.
 ENV UDEV=1
 
-CMD ["python","counter.py"]
+# main.py will run when container starts up on the device
+CMD ["python3", "src/main.py"]
+#CMD [ "sleep", "999999" ]
