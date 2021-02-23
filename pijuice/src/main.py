@@ -6,6 +6,7 @@ import os
 from pijuice import PiJuice
 from balena import Balena
 from twilio.rest import Client
+import counter.py
 
 # Start the SDK
 balena = Balena()
