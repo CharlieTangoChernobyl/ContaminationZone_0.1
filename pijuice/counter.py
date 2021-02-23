@@ -7,7 +7,6 @@ import smbus
 from collections import deque
 from influxdb import InfluxDBClient
 import I2C_LCD_driver
-import main.py
 
 GPIO.setmode(GPIO.BOARD)
 
