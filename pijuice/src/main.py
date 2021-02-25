@@ -1,10 +1,10 @@
 from time import sleep
 import datetime
 import sys, getopt, os
+import counter.py
 sys.path.append('/usr/lib/python3.5/dist-packages') # temporary hack to import the piJuice module
 from pijuice import PiJuice
 from balena import Balena
-import counter.py
 
 
 # Start the SDK
