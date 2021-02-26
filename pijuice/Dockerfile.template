@@ -24,6 +24,8 @@ COPY . ./
 # Enable udevd so that plugged dynamic hardware devices show up in our container.
 ENV UDEV=1
 
+RUN ["chmod", "+x", "./shell.sh"]
+
 # main.py will run when container starts up on the device
 CMD ["sh", "-c", "./shell.sh" ]
 #CMD [ "sleep", "999999" ]
