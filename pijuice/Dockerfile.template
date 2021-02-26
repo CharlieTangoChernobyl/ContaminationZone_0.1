@@ -25,5 +25,5 @@ COPY . ./
 ENV UDEV=1
 
 # main.py will run when container starts up on the device
-CMD ["sh", "-c", "shell.sh" ]
+CMD ["sh", "-c", "./shell.sh" ]
 #CMD [ "sleep", "999999" ]

@@ -1,5 +1,5 @@
 #!/bin/sh
-python counter.py
+python ./counter.py
 echo "Counter running"
-python3 src/main.py
-echo"PiJuice running"
+python3 ./src/main.py
+echo "PiJuice running"
