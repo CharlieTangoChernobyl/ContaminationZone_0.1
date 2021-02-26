@@ -29,34 +29,34 @@
           "custom": {},
           "decimals": null,
           "mappings": [],
-          "max": "500",
+          "max": 1231.4709236,
           "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "light-orange",
+                "color": "semi-dark-green",
                 "value": null
               },
               {
+                "color": "light-yellow",
+                "value": 36.9441277081
+              },
+              {
+                "color": "light-orange",
+                "value": 123.14709236
+              },
+              {
                 "color": "semi-dark-orange",
-                "value": 51
+                "value": 369.441277081
               },
               {
-                "color": "dark-orange",
-                "value": 101
+                "color": "semi-dark-red",
+                "value": 615.735461802
               },
               {
-                "color": "rgb(255, 0, 0)",
-                "value": 151
-              },
-              {
-                "color": "rgb(143, 63, 151)",
-                "value": 201
-              },
-              {
-                "color": "rgb(0, 0, 0)",
-                "value": 301
+                "color": "dark-red",
+                "value": 1231.4709236
               }
             ]
           },
@@ -66,7 +66,7 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 9,
+        "w": 6,
         "x": 0,
         "y": 0
       },
@@ -82,7 +82,7 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": false
+        "showThresholdMarkers": true
       },
       "pluginVersion": "7.0.3",
       "targets": [
@@ -112,10 +112,7 @@
       "type": "gauge"
     },
     {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
+      "content": "<center><img src=https://contamination.zone/wp-content/uploads/2020/10/logo-fix.png></center>",
       "datasource": null,
       "fieldConfig": {
         "defaults": {
@@ -123,53 +120,30 @@
         },
         "overrides": []
       },
-      "fill": 0,
-      "fillGradient": 0,
       "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 9,
+        "h": 3,
+        "w": 5,
+        "x": 6,
         "y": 0
       },
-      "hiddenSeries": false,
-      "id": 12,
-      "legend": {
-        "alignAsTable": false,
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "paceLength": 10,
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "balena-sense.moving_average",
-          "color": "#FFB357",
-          "linewidth": 2
-        }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
+      "id": 17,
+      "mode": "html",
       "targets": [
         {
-          "groupBy": [],
-          "hide": true,
-          "measurement": "balena-sense",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -178,130 +152,23 @@
             [
               {
                 "params": [
-                  "cpm"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "groupBy": [],
-          "hide": false,
-          "measurement": "balena-sense",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "cpm"
+                  "value"
                 ],
                 "type": "field"
               },
               {
-                "params": [
-                  "120"
-                ],
-                "type": "moving_average"
+                "params": [],
+                "type": "mean"
               }
             ]
           ],
           "tags": []
         }
       ],
-      "thresholds": [
-        {
-          "colorMode": "ok",
-          "fill": false,
-          "line": true,
-          "op": "lt",
-          "value": 50,
-          "yaxis": "left"
-        },
-        {
-          "colorMode": "custom",
-          "fill": false,
-          "fillColor": "rgba(250, 222, 42, 0)",
-          "line": true,
-          "lineColor": "#E0B400",
-          "op": "lt",
-          "value": 100,
-          "yaxis": "left"
-        },
-        {
-          "colorMode": "custom",
-          "fill": false,
-          "fillColor": "rgba(50, 116, 217, 0.2)",
-          "line": true,
-          "lineColor": "#FF9830",
-          "op": "lt",
-          "value": 150,
-          "yaxis": "left"
-        },
-        {
-          "colorMode": "custom",
-          "fill": false,
-          "fillColor": "rgba(50, 116, 217, 0.2)",
-          "line": true,
-          "lineColor": "#C4162A",
-          "op": "lt",
-          "value": 200,
-          "yaxis": "left"
-        },
-        {
-          "colorMode": "custom",
-          "fill": false,
-          "fillColor": "rgba(50, 116, 217, 0.2)",
-          "line": true,
-          "lineColor": "rgb(89, 0, 73)",
-          "op": "lt",
-          "value": 300,
-          "yaxis": "left"
-        }
-      ],
       "timeFrom": null,
-      "timeRegions": [],
       "timeShift": null,
-      "title": "Counts per Minute (CPM)",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
+      "title": "",
+      "type": "text"
     },
     {
       "cacheTimeout": null,
@@ -313,34 +180,34 @@
           },
           "custom": {},
           "mappings": [],
-          "max": 20,
+          "max": 10,
           "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "light-orange",
+                "color": "semi-dark-green",
                 "value": null
               },
               {
-                "color": "semi-dark-orange",
+                "color": "light-yellow",
+                "value": 0.3
+              },
+              {
+                "color": "light-orange",
                 "value": 1
               },
               {
-                "color": "dark-orange",
+                "color": "semi-dark-orange",
+                "value": 3
+              },
+              {
+                "color": "semi-dark-red",
                 "value": 5
               },
               {
-                "color": "rgb(255, 0, 0)",
+                "color": "dark-red",
                 "value": 10
-              },
-              {
-                "color": "rgb(143, 63, 151)",
-                "value": 20
-              },
-              {
-                "color": "rgb(0, 0, 0)",
-                "value": 50
               }
             ]
           },
@@ -350,9 +217,9 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 9,
-        "x": 0,
-        "y": 8
+        "w": 6,
+        "x": 11,
+        "y": 0
       },
       "id": 13,
       "links": [],
@@ -366,7 +233,7 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": false
+        "showThresholdMarkers": true
       },
       "pluginVersion": "7.0.3",
       "targets": [
@@ -396,6 +263,81 @@
       "type": "gauge"
     },
     {
+      "cacheTimeout": null,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "mappings": [],
+          "max": 10,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "semi-dark-green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 5,
+        "x": 6,
+        "y": 3
+      },
+      "id": 15,
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.3",
+      "targets": [
+        {
+          "groupBy": [],
+          "measurement": "balena-sense",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT (((sum(\"cpm\") / 120) / 5) * 0.00812037037037) FROM \"balena-sense\" WHERE $timeFilter",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "usvh"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Approximate Accumulated Dose (µSv)",
+      "type": "stat"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -407,12 +349,12 @@
         },
         "overrides": []
       },
-      "fill": 0,
+      "fill": 5,
       "fillGradient": 0,
       "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 9,
+        "h": 11,
+        "w": 17,
+        "x": 0,
         "y": 8
       },
       "hiddenSeries": false,
@@ -574,7 +516,7 @@
       }
     }
   ],
-  "refresh": "10s",
+  "refresh": "5s",
   "schemaVersion": 25,
   "style": "dark",
   "tags": [],
@@ -610,7 +552,7 @@
     ]
   },
   "timezone": "",
-  "title": "The Geiger Counter",
+  "title": "Geiger Counter",
   "uid": "pF3gRDiRk",
-  "version": 3
+  "version": 11
 }
