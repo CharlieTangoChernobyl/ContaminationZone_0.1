@@ -25,6 +25,7 @@ COPY . ./
 ENV UDEV=1
 
 RUN ["chmod", "+x", "./shell.sh"]
+RUN ["chmod", "+x", "./src/main.py"]
 
 # main.py will run when container starts up on the device
 CMD ["sh", "-c", "./shell.sh" ]
