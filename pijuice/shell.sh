@@ -1,2 +1,5 @@
 #!/bin/sh
-python ./counter.py & ./src/main.py
+python ./counter.py & 
+print "Counter running" &
+python ./src/main.py &
+print "PiJuice runnning"
