@@ -2,12 +2,12 @@ version: '2'
 volumes:
     sense-data:
 services:
-  influxdb:
+  InfluxDB:
     restart: always
     build: ./influxdb
     volumes:
       - 'sense-data:/data'
-  grafana:
+  Grafana:
     restart: always
     build: ./grafana
     ports:
@@ -19,7 +19,7 @@ services:
         - 'GF_PATHS_PROVISIONING=/usr/src/app/provisioning'
         - 'GF_SESSION_PROVIDER=memory'
     depends_on:
-      - influxdb
+      - InfluxDB
 #  counter:
 #    restart: always
 #    build: ./counter
@@ -32,7 +32,7 @@ services:
     privileged: true
     labels:
       io.balena.features.dbus: '1'
-  PiJuice:
+  GeigerCounter:
     build: ./pijuice
     privileged: true
     labels:
