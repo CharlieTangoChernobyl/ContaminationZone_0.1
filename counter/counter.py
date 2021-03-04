@@ -73,3 +73,16 @@ while True:
     lcd.lcd_display_string(line4, 4, 0)
 
     time.sleep(1)
+
+while True:
+    #grab the current button state
+    buttonState1 = GPIO.input(5)
+
+    # check to see if button has been pushed
+    if buttonState1 != oldButtonState1 and buttonState1 == False:
+        # shutdown
+        subprocess.call("shutdown -h now", shell=True,
+          stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        oldButtonState1 = buttonState1
+
+    time.sleep(.5)
