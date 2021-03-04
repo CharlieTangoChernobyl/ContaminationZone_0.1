@@ -30,7 +30,7 @@ services:
     privileged: true
     labels:
       io.balena.features.dbus: '1'
- HardwareButtons:
+  HardwareButtons:
     build: ./buttons
     privileged: true
     labels:
