@@ -5,7 +5,7 @@ WORKDIR /usr/app/src
 RUN pip install RPi.GPIO 
 
 
-CMD ["python","power.py"]
+CMD ["python","./power.py"]
 
 
 
