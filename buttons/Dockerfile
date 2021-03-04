@@ -1,4 +1,5 @@
-FROM balenalib/%%BALENA_MACHINE_NAME%%-debian-python:3.7.4
+FROM balenalib/raspberrypi3-debian-python:3.7.4
+
 
 # Enable systemd init system
 ENV INITSYSTEM off
