@@ -38,4 +38,8 @@ services:
     labels:
       io.balena.features.dbus: '1'
       io.balena.features.balena-api: '1'
-      
+  OpenWRT:
+    build: ./OpenWRT
+    privileged: true
+    labels:
+      io.balena.features.dbus: '1'
