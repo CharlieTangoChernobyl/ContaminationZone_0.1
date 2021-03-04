@@ -20,13 +20,6 @@ services:
         - 'GF_SESSION_PROVIDER=memory'
     depends_on:
       - InfluxDB
-#  counter:
-#    restart: always
-#    build: ./counter
-#    privileged: true
-#    labels:
-#      io.balena.features.dbus: '1'
-#      io.balena.features.balena-api: '1'
   WiFi:
     build: .
     privileged: true
@@ -37,42 +30,8 @@ services:
     privileged: true
     labels:
       io.balena.features.dbus: '1'
-      io.balena.features.balena-api: '1'
-#  OpenWRT:
-#    build: ./OpenWRT
-#    privileged: true
-#    labels:
-#      io.balena.features.dbus: '1'
-  # https://hub.docker.com/r/pihole/pihole
-  pihole:
-    build: ./pihole
+ HardwareButtons:
+    build: ./buttons
     privileged: true
-    volumes:
-      - "pihole_config:/etc/pihole"
-      - "dnsmasq_config:/etc/dnsmasq.d"
-    dns:
-      - "127.0.0.1"
-      - "1.1.1.1"
-    network_mode: host
-
-  # https://github.com/klutchell/unbound-dnscrypt
-  unbound:
-    build: ./unbound
-    privileged: true
-    ports:
-      - "5053:5053/tcp"
-      - "5053:5053/udp"
-
-  # https://github.com/balenablocks/fbcp
-  fbcp:
-    image: balenablocks/fbcp:1.0.0
-    privileged: true
-
-  # prevent plymouth from blocking fbcp
-  # https://github.com/klutchell/balena-pihole/issues/25
-  # https://github.com/balena-os/meta-balena/issues/1772
-  dbus:
-    build: dbus
-    restart: on-failure
     labels:
-        io.balena.features.dbus: "1"
+      io.balena.features.dbus: '1'
