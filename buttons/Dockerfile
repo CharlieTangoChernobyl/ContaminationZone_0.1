@@ -1,14 +1,26 @@
-FROM balenalib/raspberrypi3-debian-python:3.7-buster-build
+FROM balenalib/%%BALENA_MACHINE_NAME%%-debian-python:3.7.4
 
-WORKDIR /usr/app/src
+# Enable systemd init system
+ENV INITSYSTEM off
 
-RUN pip install spidev RPi.GPIO smbus
+# Set the working directory
+WORKDIR /usr/src/app
 
-# This will copy all files in our root to the working  directory in the container
+RUN install_packages git dbus gnome-common
+
+RUN apt-get update
+RUN apt install python3-gi python3-gi-cairo gir1.2-gtk-3.0
+
+# Upgrade pip
+RUN pip install --upgrade pip
+COPY requirements.txt .
+RUN pip install --user -r requirements.txt --no-cache-dir --disable-pip-version-check \
+                --index-url https://www.piwheels.org/simple
+
+# Copy everything into the container
 COPY . ./
-
-CMD ["python","power.py"]
-
-
-
-
+#Make sure scripts in .local are usable:
+ENV PATH=/root/.local/bin:$PATH
+ENV DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
+# Start application
+CMD ["python", "button.py"]
