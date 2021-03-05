@@ -1,4 +1,0 @@
-RPi.Gpio
-pydbus
-Pycairo
-PyGObject

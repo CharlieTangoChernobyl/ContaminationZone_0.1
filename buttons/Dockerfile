@@ -1,27 +1,30 @@
-FROM balenalib/raspberrypi3-debian-python:3.7.4
+# base-image for node on any machine using a template variable,
+# see more about dockerfile templates here: https://www.balena.io/docs/learn/develop/dockerfile/#dockerfile-templates
+# and about balena base images here: https://www.balena.io/docs/reference/base-images/base-images/
+FROM balenalib/%%BALENA_MACHINE_NAME%%-node:10-stretch-run
 
+# use `install_packages` if you need to install dependencies,
+# for instance if you need git, just uncomment the line below.
+# RUN install_packages git
 
-# Enable systemd init system
-ENV INITSYSTEM off
-
-# Set the working directory
+# Defines our working directory in container
 WORKDIR /usr/src/app
 
-RUN install_packages git dbus gnome-common
+# Copies the package.json first for better cache on later pushes
+COPY package*.json ./
 
-RUN apt-get update
-RUN apt install python3-gi python3-gi-cairo gir1.2-gtk-3.0
+# This install npm dependencies on the balena build server,
+# making sure to clean up the artifacts it creates in order to reduce the image size.
+RUN JOBS=MAX npm install --production --unsafe-perm && npm cache verify && rm -rf /tmp/*
 
-# Upgrade pip
-RUN pip install --upgrade pip
-COPY requirements.txt .
-RUN pip install --user -r requirements.txt --no-cache-dir --disable-pip-version-check \
-                --index-url https://www.piwheels.org/simple
-
-# Copy everything into the container
+# This will copy all files in our root to the working directory in the container
 COPY . ./
-#Make sure scripts in .local are usable:
-ENV PATH=/root/.local/bin:$PATH
-ENV DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
-# Start application
-CMD ["python", "button.py"]
+
+# Enable udevd so that plugged dynamic hardware devices show up in our container.
+ENV UDEV=1
+
+RUN ["chmod", "+x", "./listen-for-shutdown.sh"]
+RUN ["chmod", "+x", "./listen-for-shutdown.py"]
+
+# main.py will run when container starts up on the device
+CMD ["sh", "-c", "./listen-for-shutdown.sh" ]
