@@ -9,7 +9,7 @@ import gi
 GPIO.setmode(GPIO.BOARD)
 
 # Set pin 5 an an input, and enable the internal pull-up resistor
-GPIO.setup(5, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 oldButtonState1 = True
 
