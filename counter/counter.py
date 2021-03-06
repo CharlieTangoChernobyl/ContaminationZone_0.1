@@ -73,3 +73,16 @@ while True:
     lcd.lcd_display_string(line4, 4, 0)
 
     time.sleep(1)
+    
+# Update the displays
+line1a = " I'm shutting down"
+lcd.lcd_display_string(line1a, 1, 0)
+time.sleep(1)
+line2a = " It's getting dark"
+lcd.lcd_display_string(line2a, 2, 0)
+time.sleep(1)
+line3a = "   To wake me up,"
+lcd.lcd_display_string(line3a, 3, 0)
+time.sleep(1)
+line4a = "    Press power"
+lcd.lcd_display_string(line4a, 4, 0)
