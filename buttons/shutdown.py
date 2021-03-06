@@ -8,7 +8,7 @@ import os
 # Setup the pin with internal pullups enabled and pin in reading mode.
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(37, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
  
 
@@ -20,7 +20,7 @@ def Shutdown(channel):
 
 # Add our function to execute when the button pressed event happens
 
-GPIO.add_event_detect(21, GPIO.BOTH, callback=Shutdown, bouncetime=2000)
+GPIO.add_event_detect(37, GPIO.BOTH, callback=Shutdown, bouncetime=2000)
 
 # Now wait!
 while 1:
