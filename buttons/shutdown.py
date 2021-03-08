@@ -1,27 +1,14 @@
-# !/bin/python
+# THE GEIGER COUNTER (at last)
 
-import RPi.GPIO as GPIO
 import time
-import os
+import datetime
+import RPi.GPIO as GPIO
+import smbus
 
-# Use the Broadcom SOC Pin numbers
-# Setup the pin with internal pullups enabled and pin in reading mode.
+# This method fires on edge detection (the pulse from the counter board)
+def countme(channel):
+    os.system('shutdown -h now')
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(37, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-
- 
-
-# Our function on what to do when the button is pressed
-def Shutdown(channel):
-    print("Shutting Down")
-    time.sleep(5)
-    os.system("sudo shutdown -h now")
-
-# Add our function to execute when the button pressed event happens
-
-GPIO.add_event_detect(37, GPIO.BOTH, callback=Shutdown, bouncetime=2000)
-
-# Now wait!
-while 1:
-    time.sleep(1)
+# Set the input with falling edge detection for geiger counter pulses
+GPIO.setup(26, GPIO.IN)
+GPIO.add_event_detect(26, GPIO.FALLING, callback=countme)

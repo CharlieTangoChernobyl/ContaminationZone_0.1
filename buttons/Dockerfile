@@ -1,14 +1,19 @@
-FROM resin/raspberrypi3-python
+FROM balenalib/raspberrypi3-debian-python:3.7-buster-build
 
-#switch on systemd init system in container
-ENV INITSYSTEM on
+WORKDIR /usr/app/src
 
-# pip install python deps from requirements.txt
-# For caching until requirements.txt changes
-COPY ./requirements.txt /requirements.txt
-RUN pip install -r /requirements.txt
+RUN install_packages jq curl python3-urwid python3-smbus 
+RUN pip install spidev RPi.GPIO influxdb smbus
 
-COPY . /usr/src/app
-WORKDIR /usr/src/app
+RUN wget https://github.com/PiSupply/PiJuice/raw/master/Software/Install/pijuice-base_1.6_all.deb && \
+  dpkg -i pijuice-base_1.6_all.deb
+
+RUN pip3 install smbus
+
+# This will copy all files in our root to the working  directory in the container
+COPY . ./
+
+# Enable udevd so that plugged dynamic hardware devices show up in our container.
+ENV UDEV=1
 
 CMD ["python", "shutdown.py"]
