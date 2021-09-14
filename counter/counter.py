@@ -13,7 +13,8 @@ import atexit
 GPIO.setmode(GPIO.BOARD)
 
 counts = deque()
-usvh_ratio = 0.00812037037037 #J305 tube
+const usvh_ratio = process.env.usvh_ratio || `0.007575758`;
+#usvh_ratio = 0.00812037037037 #J305 tube
 #usvh_ratio = 0.007575758 #SBM-20 tube
 
 lcd = I2C_LCD_driver.lcd()
