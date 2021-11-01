@@ -20,7 +20,8 @@ services:
         - 'GF_SESSION_PROVIDER=memory'
     depends_on:
       - InfluxDB
-  counter:
-    restart: always
-    build: ./counter
+  GeigerCounter:
+    build: ./pijuice
     privileged: true
+    labels:
+      io.balena.features.dbus: '1' 
