@@ -20,13 +20,3 @@ services:
         - 'GF_SESSION_PROVIDER=memory'
     depends_on:
       - InfluxDB
-  WiFi:
-    build: .
-    privileged: true
-    labels:
-      io.balena.features.dbus: '1'
-  GeigerCounter:
-    build: ./pijuice
-    privileged: true
-    labels:
-      io.balena.features.dbus: '1'
