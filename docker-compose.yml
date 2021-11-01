@@ -20,3 +20,7 @@ services:
         - 'GF_SESSION_PROVIDER=memory'
     depends_on:
       - InfluxDB
+  counter:
+    restart: always
+    build: ./counter
+    privileged: true
