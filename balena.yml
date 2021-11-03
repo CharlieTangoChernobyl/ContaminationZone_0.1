@@ -11,9 +11,6 @@ assets:
     data:
       url: "https://raw.githubusercontent.com/balenalabs-incubator/wifi-repeater/master/logo.png"
 data:
-  applicationEnvironmentVariables:
-    - AP_SSID: "_ContaminationZone"
-    - AP_PASSWORD: "Chernobyl"
   defaultDeviceType: "raspberrypi4-64"
   supportedDeviceTypes:
     - "raspberrypi3"
